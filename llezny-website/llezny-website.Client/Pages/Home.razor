@@ -6,12 +6,12 @@
     <aside class="side">
         <p class="eyebrow">Software Engineer</p>
         <h1>Łukasz<br />Łężny</h1>
-        <p class="lead">C# &amp; C++, from Unity games to cross-platform HMI.</p>
+        <p class="lead">C# and C++, from Unity games to HMI apps and microcontrollers.</p>
 
         <nav class="toc" aria-label="Sections">
             <a href="#about"><span>01</span>About</a>
             <a href="#experience"><span>02</span>Experience</a>
-            <a href="#projects"><span>03</span>Projects</a>
+            <a href="#projects"><span>03</span>Project</a>
             <a href="#skills"><span>04</span>Skills</a>
             <a href="#education"><span>05</span>Education</a>
         </nav>
@@ -27,14 +27,12 @@
     <main class="content">
         <section id="about">
             <h2>About</h2>
-            <p class="big">
-                I take features from mockup to a working, tested product: UI, interaction logic and
-                integration with external systems.
-            </p>
+            <p class="big">Hi, I'm Łukasz.</p>
             <p>
-                Over 4 years of experience in C# and C++. In C# I focus on clean architecture, dependency
-                injection, async/await and unit-testable code. I actively use AI tools in my daily workflow
-                and keep exploring how to build AI-powered features.
+                I build things people tap, click and turn: mobile games, audio plugins and screens on
+                small devices. I started out in games, then moved into HMI, where most of my job is making a design
+                behave like the designer imagined. After hours I'm making a survival game of my own and
+                trying to keep its code tidy enough that I can still test it.
             </p>
         </section>
 
@@ -48,19 +46,18 @@
                     <p class="org">Spyrosoft Synergy S.A.</p>
 
                     <h4>DAW Plugin</h4>
-                    <p class="stack">C++ · CMake · Slint · Figma · GitLab · SVN</p>
-                    <ul>
-                        <li>Turned Figma mockups into the plugin's visual layer, including dynamic plots generated from SVG paths.</li>
-                        <li>Implemented the UI and kept behaviour consistent on Windows and macOS.</li>
-                        <li>Worked in a small team, collaborating directly with the client.</li>
-                    </ul>
+                    <p class="stack">C++ · CMake · Slint · Figma</p>
+                    <p>
+                        Turned Figma mockups into a working Slint UI for a Windows and macOS plugin that talks to
+                        specialised audio hardware, including dynamic plots generated from SVG paths.
+                    </p>
 
-                    <h4>Smart Shower Demo <small>Nov 2024 – May 2025</small></h4>
+                    <h4><a href="https://spyro-soft.com/expert-hub/qt-for-mcus-in-everyday-life-smart-shower-that-connects-tech-people-business" target="_blank" rel="noopener">Smart Shower Demo</a> <small>Nov 2024 – May 2025</small></h4>
                     <p class="stack">ESP32-S3 · FreeRTOS · Qt for MCUs · UART</p>
-                    <ul>
-                        <li>Integrated Qt for MCUs and implemented the UI according to design specifications.</li>
-                        <li>Implemented UART communication with the main board, keeping both displays in sync.</li>
-                    </ul>
+                    <p>
+                        UI in Qt for MCUs for a control knob with a small display, kept in sync with the
+                        main board over UART.
+                    </p>
                 </div>
             </div>
 
@@ -69,12 +66,12 @@
                 <div>
                     <h3>Junior Unity Developer</h3>
                     <p class="org">Huuuge Games</p>
-                    <h4>Traffic Puzzle</h4>
-                    <p class="stack">C# · Unity · .NET Core · NUnit · JSON.NET</p>
-                    <ul>
-                        <li>Implemented the daily reward system for a casual match-3 mobile game.</li>
-                        <li>Integrated external services (Firebase, AppsFlyer, Helpshift).</li>
-                    </ul>
+                    <h4><a href="https://play.google.com/store/apps/details?id=com.picadilla.beepbeepvroom" target="_blank" rel="noopener">Traffic Puzzle</a></h4>
+                    <p class="stack">C# · Unity · .NET Core · NUnit</p>
+                    <p>
+                        Top-grossing match-3 for iOS and Android (about 1M monthly players in 2021). I co-created
+                        the daily reward system and integrated Firebase, AppsFlyer and Helpshift.
+                    </p>
                 </div>
             </div>
 
@@ -83,20 +80,20 @@
                 <div>
                     <h3>Intern C++ Developer</h3>
                     <p class="org">Huuuge Games</p>
-                    <h4>Huuuge Casino</h4>
-                    <p class="stack">C++ · Lua · CMake · TeamCity</p>
-                    <ul>
-                        <li>Developed new slot games in Lua.</li>
-                        <li>Added features to the in-house game engine in C++.</li>
-                    </ul>
+                    <h4><a href="https://play.google.com/store/apps/details?id=com.huuuge.casino.slots" target="_blank" rel="noopener">Huuuge Casino</a></h4>
+                    <p class="stack">C++ · Lua · CMake</p>
+                    <p>
+                        Mobile casino app with 10M+ downloads on Android. I developed new slot games in Lua and
+                        extended the in-house C++ engine.
+                    </p>
                 </div>
             </div>
         </section>
 
         <section id="projects">
-            <h2>Projects</h2>
+            <h2>Project</h2>
             <div class="project">
-                <p class="eyebrow">2023 – present · Solo project</p>
+                <p class="eyebrow">2023 – present · Solo · In development</p>
                 <h3>Hearthglade</h3>
                 <p>
                     A mobile survival game: procedural islands, farming, cooking, crafting and
@@ -108,7 +105,7 @@
                     <li>Seeded procedural island generation: reproducible worlds from a single seed.</li>
                 </ul>
                 <p class="stack">C# · Unity · VContainer · UniTask</p>
-                <a class="more" href="https://github.com/Llezny/HearthgladePublic"target="_blank" rel="noopener">See it on GitHub →</a>
+                <a class="more" href="https://github.com/Llezny/HearthgladePublic" target="_blank" rel="noopener">Follow it on GitHub →</a>
             </div>
         </section>
 
@@ -116,13 +113,11 @@
             <h2>Skills</h2>
             <dl class="skills">
                 <dt>C# / .NET</dt>
-                <dd>C#, .NET Core, Unity, NUnit, JSON.NET, VContainer (DI), UniTask (async/await)</dd>
-                <dt>C++ / HMI / Embedded</dt>
-                <dd>C++, Lua, Slint, Qt for MCUs, ESP32-S3, FreeRTOS, UART</dd>
-                <dt>Tools</dt>
-                <dd>Git, GitLab, Bitbucket, SVN, CMake, TeamCity, Jira, Swagger, Visual Studio, VS Code, Figma</dd>
-                <dt>AI</dt>
-                <dd>Claude, Google Stitch, MCP (Model Context Protocol), function calling</dd>
+                <dd>Unity, NUnit, VContainer (DI), UniTask (async/await), JSON.NET</dd>
+                <dt>C++ / embedded</dt>
+                <dd>Lua, Slint, Qt for MCUs, ESP32-S3, FreeRTOS, UART</dd>
+                <dt>Also</dt>
+                <dd>Git, CMake, Figma, MCP, function calling</dd>
             </dl>
         </section>
 
