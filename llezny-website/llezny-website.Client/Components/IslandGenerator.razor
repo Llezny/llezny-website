@@ -1,0 +1,163 @@
+@using System.Diagnostics
+@inject IJSRuntime Js
+@implements IDisposable
+
+<div class="island">
+    <canvas @ref="canvas" width="@IslandPreset.Size" height="@IslandPreset.Size"
+            aria-label="Procedurally generated island"></canvas>
+
+    <div class="island-side">
+        <div class="island-controls">
+            <label>
+                Seed
+                <input type="number" @bind="seed" @bind:event="onchange" disabled="@busy" />
+            </label>
+            <button class="btn primary" @onclick="Generate" disabled="@busy">@(busy ? "Generating…" : "Generate")</button>
+            <button class="btn" @onclick="Randomize" disabled="@busy">Random seed</button>
+        </div>
+
+        <p class="island-note">
+            The same seed always gives the same island, generated in your browser by the game's own Unity-free C# code.
+        </p>
+    </div>
+</div>
+
+@code {
+    private const double RevealMs = 2800;
+
+    private ElementReference canvas;
+    private DotNetObjectReference<IslandGenerator> self;
+    private CancellationTokenSource reveal;
+    private int seed = 2026;
+    private bool busy;
+    private bool started;
+
+    protected override void OnInitialized() => self = DotNetObjectReference.Create(this);
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Generating on page load would block the main thread while the page is still settling.
+            await Js.InvokeVoidAsync("islandMap.whenVisible", canvas, self);
+        }
+    }
+
+    [JSInvokable]
+    public async Task OnVisible()
+    {
+        if (!started)
+        {
+            started = true;
+            await Generate();
+        }
+    }
+
+    private async Task Randomize()
+    {
+        seed = Random.Shared.Next(1, 1_000_000);
+        await Generate();
+    }
+
+    private async Task Generate()
+    {
+        if (busy) return;
+
+        reveal?.Cancel();
+
+        busy = true;
+        StateHasChanged();
+        await Task.Delay(50); // let the browser paint the "Generating…" state first
+
+        var pixels = ToPixels(IslandPreset.Generate(seed));
+
+        busy = false;
+        StateHasChanged();
+
+        reveal = new CancellationTokenSource();
+        await Reveal(pixels, seed, reveal.Token);
+    }
+
+    // Biome colour per cell, a little lighter on higher ground and darker on lower ground.
+    private static byte[] ToPixels(Hearthglade.Core.World.GeneratedTerrain terrain)
+    {
+        var pixels = new byte[terrain.Biome.Length * 4];
+        for (var i = 0; i < terrain.Biome.Length; i++)
+        {
+            var (r, g, b) = IslandPreset.Palette[Math.Max(0, (int)terrain.Biome[i])];
+            var height01 = Math.Clamp((terrain.Height[i] + 1.0) * 0.5, 0.0, 1.0);
+            var light = 0.82 + 0.36 * height01;
+
+            pixels[i * 4] = Shade(r, light);
+            pixels[i * 4 + 1] = Shade(g, light);
+            pixels[i * 4 + 2] = Shade(b, light);
+            pixels[i * 4 + 3] = 255;
+        }
+        return pixels;
+    }
+
+    private static byte Shade(byte channel, double light) => (byte)Math.Clamp((int)Math.Round(channel * light), 0, 255);
+
+    // Cells appear from the centre outwards, with a ragged edge. The order depends only on the seed.
+    private static int[] RevealOrder(int size, int seed)
+    {
+        var total = size * size;
+        var random = new Random(seed);
+        var half = (size - 1) / 2.0;
+        var keys = new float[total];
+        var order = new int[total];
+
+        for (var i = 0; i < total; i++)
+        {
+            var dx = i % size - half;
+            var dz = i / size - half;
+            keys[i] = (float)(Math.Sqrt(dx * dx + dz * dz) + random.NextDouble() * 6);
+            order[i] = i;
+        }
+
+        Array.Sort(keys, order);
+        return order;
+    }
+
+    private async Task Reveal(byte[] pixels, int seed, CancellationToken token)
+    {
+        var size = IslandPreset.Size;
+        var total = size * size;
+
+        if (await Js.InvokeAsync<bool>("islandMap.prefersReducedMotion"))
+        {
+            await Js.InvokeVoidAsync("islandMap.blit", canvas, size, pixels);
+            return;
+        }
+
+        var order = RevealOrder(size, seed);
+        var frame = new byte[pixels.Length];
+        var clock = Stopwatch.StartNew();
+        var drawn = 0;
+
+        while (drawn < total && !token.IsCancellationRequested)
+        {
+            var t = Math.Min(1.0, clock.Elapsed.TotalMilliseconds / RevealMs);
+            var eased = 1.0 - (1.0 - t) * (1.0 - t); // fast start, gentle finish
+            var target = (int)(eased * total);
+
+            for (; drawn < target; drawn++)
+            {
+                var offset = order[drawn] * 4;
+                Buffer.BlockCopy(pixels, offset, frame, offset, 4);
+            }
+
+            await Js.InvokeVoidAsync("islandMap.blit", canvas, size, frame);
+            if (drawn < total)
+            {
+                await Js.InvokeVoidAsync("islandMap.nextFrame");
+            }
+        }
+    }
+
+    public void Dispose()
+    {
+        reveal?.Cancel();
+        self?.Dispose();
+    }
+}
