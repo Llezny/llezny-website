@@ -1,0 +1,155 @@
+@page "/"
+
+<PageTitle>Łukasz Łężny · Software Engineer</PageTitle>
+
+<div class="layout">
+    <aside class="side">
+        <p class="eyebrow">Software Engineer</p>
+        <h1>Łukasz<br />Łężny</h1>
+        <p class="lead">C# &amp; C++, from Unity games to cross-platform HMI.</p>
+
+        <nav class="toc" aria-label="Sections">
+            <a href="#about"><span>01</span>About</a>
+            <a href="#experience"><span>02</span>Experience</a>
+            <a href="#projects"><span>03</span>Projects</a>
+            <a href="#skills"><span>04</span>Skills</a>
+            <a href="#education"><span>05</span>Education</a>
+        </nav>
+
+        <ul class="links">
+            <li><a href="mailto:lukaszlezny@gmail.com">lukaszlezny@gmail.com</a></li>
+            <li><a href="https://github.com/Llezny" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/%C5%82ukasz-%C5%82%C4%99%C5%BCny-673192215/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li class="place">Szczecin, Poland</li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <section id="about">
+            <h2>About</h2>
+            <p class="big">
+                I take features from mockup to a working, tested product: UI, interaction logic and
+                integration with external systems.
+            </p>
+            <p>
+                Over 4 years of experience in C# and C++. In C# I focus on clean architecture, dependency
+                injection, async/await and unit-testable code. I actively use AI tools in my daily workflow
+                and keep exploring how to build AI-powered features.
+            </p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+
+            <div class="entry">
+                <div class="when">Nov 2023 –<br />present</div>
+                <div>
+                    <h3>HMI Developer</h3>
+                    <p class="org">Spyrosoft Synergy S.A.</p>
+
+                    <h4>DAW Plugin</h4>
+                    <p class="stack">C++ · CMake · Slint · Figma · GitLab · SVN</p>
+                    <ul>
+                        <li>Turned Figma mockups into the plugin's visual layer, including dynamic plots generated from SVG paths.</li>
+                        <li>Implemented the UI and kept behaviour consistent on Windows and macOS.</li>
+                        <li>Worked in a small team, collaborating directly with the client.</li>
+                    </ul>
+
+                    <h4>Smart Shower Demo <small>Nov 2024 – May 2025</small></h4>
+                    <p class="stack">ESP32-S3 · FreeRTOS · Qt for MCUs · UART</p>
+                    <ul>
+                        <li>Integrated Qt for MCUs and implemented the UI according to design specifications.</li>
+                        <li>Implemented UART communication with the main board, keeping both displays in sync.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Jan 2022 –<br />Mar 2023</div>
+                <div>
+                    <h3>Junior Unity Developer</h3>
+                    <p class="org">Huuuge Games</p>
+                    <h4>Traffic Puzzle</h4>
+                    <p class="stack">C# · Unity · .NET Core · NUnit · JSON.NET</p>
+                    <ul>
+                        <li>Implemented the daily reward system for a casual match-3 mobile game.</li>
+                        <li>Integrated external services (Firebase, AppsFlyer, Helpshift).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entry">
+                <div class="when">Jul 2021 –<br />Dec 2021</div>
+                <div>
+                    <h3>Intern C++ Developer</h3>
+                    <p class="org">Huuuge Games</p>
+                    <h4>Huuuge Casino</h4>
+                    <p class="stack">C++ · Lua · CMake · TeamCity</p>
+                    <ul>
+                        <li>Developed new slot games in Lua.</li>
+                        <li>Added features to the in-house game engine in C++.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <p class="eyebrow">2023 – present · Solo project</p>
+                <h3>Hearthglade</h3>
+                <p>
+                    A mobile survival game: procedural islands, farming, cooking, crafting and
+                    ship-based exploration.
+                </p>
+                <ul>
+                    <li>Unity-independent game core, so gameplay logic is developed and unit-tested without the engine.</li>
+                    <li>DI (VContainer) and async/await (UniTask) keep systems decoupled and easy to mock.</li>
+                    <li>Seeded procedural island generation: reproducible worlds from a single seed.</li>
+                </ul>
+                <p class="stack">C# · Unity · VContainer · UniTask</p>
+                <a class="more" href="https://github.com/Llezny/HearthgladePublic"target="_blank" rel="noopener">See it on GitHub →</a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <dl class="skills">
+                <dt>C# / .NET</dt>
+                <dd>C#, .NET Core, Unity, NUnit, JSON.NET, VContainer (DI), UniTask (async/await)</dd>
+                <dt>C++ / HMI / Embedded</dt>
+                <dd>C++, Lua, Slint, Qt for MCUs, ESP32-S3, FreeRTOS, UART</dd>
+                <dt>Tools</dt>
+                <dd>Git, GitLab, Bitbucket, SVN, CMake, TeamCity, Jira, Swagger, Visual Studio, VS Code, Figma</dd>
+                <dt>AI</dt>
+                <dd>Claude, Google Stitch, MCP (Model Context Protocol), function calling</dd>
+            </dl>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+
+            <div class="entry">
+                <div class="when">2018 –<br />2022</div>
+                <div>
+                    <h3>BSc in Computer Science</h3>
+                    <p class="org">West Pomeranian University of Technology in Szczecin</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Jul 2026</div>
+                <div>
+                    <h3>AI_devs 4</h3>
+                    <p class="org">Certificate of completion</p>
+                    <p>Hands-on course on production-ready AI solutions, including MCP and function calling.</p>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="when">Languages</div>
+                <div><p>Polish – native · English – B2</p></div>
+            </div>
+        </section>
+
+        <footer>© @DateTime.Now.Year Łukasz Łężny</footer>
+    </main>
+</div>

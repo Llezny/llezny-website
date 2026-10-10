@@ -1,0 +1,296 @@
+:root {
+    --cream: #f7eee3;
+    --sand: #ecd9c2;
+    --ink: #3a2a22;
+    --muted: #7a6558;
+    --terracotta: #b4532f;
+    --clay: #8f3d22;
+    --honey: #e0a43c;
+}
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+}
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.1;
+}
+
+h1:focus { outline: none; }
+
+a { color: var(--terracotta); text-underline-offset: 3px; }
+a:hover { color: var(--clay); }
+
+p { margin: 0 0 1rem; }
+
+/* ---------- page layout ---------- */
+.layout {
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+    gap: 4rem;
+    width: min(1100px, 100% - 3rem);
+    margin-inline: auto;
+}
+
+.side {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0 2.5rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--terracotta);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.side h1 {
+    font-size: clamp(2.6rem, 5vw, 3.6rem);
+    letter-spacing: -0.01em;
+}
+
+.lead {
+    margin: 1.25rem 0 0;
+    color: var(--muted);
+}
+
+.toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 2.5rem;
+}
+
+.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.toc a span {
+    display: inline-block;
+    width: 2rem;
+    color: var(--honey);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.toc a:hover { color: var(--terracotta); }
+
+.links {
+    margin: auto 0 0;
+    padding: 1.25rem 0 0;
+    border-top: 1px solid var(--sand);
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.links li + li { margin-top: 0.25rem; }
+.links .place { color: var(--muted); }
+
+/* ---------- content ---------- */
+.content { padding: 4rem 0 2rem; }
+
+section + section { margin-top: 4.5rem; }
+
+section h2 {
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--sand);
+    color: var(--clay);
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.big {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.55rem;
+    line-height: 1.35;
+}
+
+/* timeline entries */
+.entry {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px dashed var(--sand);
+}
+
+.entry:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+
+.when {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.5;
+    padding-top: 0.3rem;
+}
+
+.entry h3 { font-size: 1.4rem; }
+.org { margin: 0.2rem 0 0; color: var(--terracotta); font-weight: 600; }
+
+.entry h4 {
+    margin: 1.4rem 0 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.entry h4 small {
+    margin-left: 0.5rem;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.stack {
+    margin: 0.1rem 0 0.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.entry ul, .project ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+.entry li + li, .project li + li { margin-top: 0.3rem; }
+.entry li::marker, .project li::marker { color: var(--honey); }
+.entry p:last-child { margin-bottom: 0; }
+
+/* project panel */
+.project {
+    padding: 2rem 2.25rem;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--clay), var(--terracotta) 60%, #c9712f);
+    color: var(--cream);
+}
+
+.project .eyebrow { color: var(--sand); }
+.project h3 { font-size: 2rem; margin-bottom: 0.75rem; }
+.project .stack { color: var(--sand); margin-top: 1rem; }
+.project li::marker { color: var(--honey); }
+
+.more {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.more:hover { color: var(--honey); }
+
+/* skills */
+.skills {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0.9rem 1.5rem;
+    margin: 0;
+}
+
+.skills dt { font-weight: 700; }
+.skills dd { margin: 0; color: var(--muted); }
+
+footer {
+    margin-top: 5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 0; }
+
+    /* let .toc become a direct grid child so it can stick to the top of the whole page */
+    .side { display: contents; }
+    .eyebrow { padding-top: 3rem; }
+    .lead { margin-bottom: 1.5rem; }
+
+    .toc {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        flex-direction: row;
+        gap: 1.25rem;
+        margin: 0 -1.5rem;
+        padding: 0.75rem 1.5rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        background: var(--cream);
+        border-bottom: 1px solid var(--sand);
+    }
+
+    .toc a span { display: none; }
+    .toc a { font-weight: 600; font-size: 0.9rem; }
+
+    .links { margin: 1.5rem 0 0; padding-top: 0; border-top: 0; }
+    .content { padding-top: 2rem; }
+    html { scroll-padding-top: 4rem; }
+}
+
+@media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 0.25rem; }
+    .when br { display: none; }
+    .skills { grid-template-columns: 1fr; gap: 0.1rem; }
+    .skills dd { margin-bottom: 0.9rem; }
+    .project { padding: 1.5rem; }
+}
+
+.blazor-error-boundary {
+    background: #b32121;
+    padding: 1rem 1rem 1rem 1.5rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }
+
+.loading, .not-found {
+    padding: 4rem 1.5rem;
+    text-align: center;
+    color: var(--muted);
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    color: #000;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
